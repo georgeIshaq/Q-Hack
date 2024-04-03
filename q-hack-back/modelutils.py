@@ -16,7 +16,7 @@ client = AzureOpenAI(
 
 result = client.images.generate(
     model="dalle3", # the name of your DALL-E 3 deployment
-    prompt="A Bear by the name of Vladyslav, he is a mighty Ukrainian warrior",
+    prompt="Generate a simple image that explains the concept of integration. Aim to achieve as much explanantory power as possible with as little complication.",
     n=1
 )
 
