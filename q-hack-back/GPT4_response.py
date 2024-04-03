@@ -25,6 +25,7 @@ kernel.add_service(
     AzureChatCompletion(service_id=service_id, deployment_name=deployment, endpoint=endpoint, api_key=api_key),
 )
 
+
 # Define the request settings
 req_settings = kernel.get_service(service_id).get_prompt_execution_settings_class()(ai_model_id=service_id)
 req_settings.max_tokens = 2000
