@@ -5,7 +5,6 @@ app = Flask(__name__)
 CORS(app)
 
 
-def 
 @app.route('/')
 def index():
     return 'Carl is not white @copyright Wisdom'
