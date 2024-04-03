@@ -1,4 +1,4 @@
-import requests
+#import requests
 
 def gpt4_api_call(prompt, api_key):
     url = "https://api.openai.com/v1/engines/davinci-codex/completions"
