@@ -6,7 +6,8 @@ from langchain.agents.format_scratchpad.openai_tools import (
 )
 
 #from langchain.agents import AgentExecutor, create_openai_tools_agent
-from langchain.agents import AgentExecutor, Agent
+from langchain.agents import AgentExecutor, Agent, create_openai_tools_agent
+from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
 from langchain.chat_models import ChatOpenAI, AzureChatOpenAI
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.prompts.chat import BaseMessagePromptTemplate, SystemMessagePromptTemplate
@@ -24,26 +25,17 @@ prompt = ChatPromptTemplate.from_messages(
         SystemMessagePromptTemplate.from_template(
             prompts.SETUP_PROMPT
         ),
-        ("user", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ]
 )
 tools = [modelutils.generate_image]
 
-llm_with_tools = llm.bind_tools(tools)
-
-
-agent = (
-    {
-        "input": lambda x: x["input"],
-        "agent_scratchpad": lambda x: format_to_openai_tool_messages(
-            x["intermediate_steps"]
-        ),
-    }
-    | prompt
-    | llm_with_tools
-    | OpenAIToolsAgentOutputParser()
-)
+agent = create_openai_tools_agent(llm, tools, prompt)
 
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+if __name__ == "__main__":
+    print(agent_executor.invoke({"input": "Integrate 2*x^3", "interest": "Farming"}))
+
+

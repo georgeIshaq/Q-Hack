@@ -3,3 +3,5 @@ flask-cors
 semantic-kernel
 langchain
 pillow
+python-dotenv
+openai
