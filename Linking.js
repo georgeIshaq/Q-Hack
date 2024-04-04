@@ -27,6 +27,11 @@ function submitForm() {
                     </div>`;
     var block = document.getElementsByClassName('chatblock')
     block[0].appendChild(resDiv);
+    if (data.image != null) {
+        var image = document.createElement('img');
+        image.src = `http://localhost:5000/image/${data.image}`;
+        block[0].appendChild(image)
+    }
 })
   .catch((error) => {
     console.error('Error:', error);
