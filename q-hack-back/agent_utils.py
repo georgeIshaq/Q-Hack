@@ -49,14 +49,12 @@ def agent_run(user_input, interest):
             AIMessage(content=result["output"]),
         ]
     )
-
+    print("user input:", user_input, '\n')
     return result["output"]
 
 
 if __name__ == "__main__":
     input = "Integrate 2*x^3"
-
-
     print(agent_executor.invoke({"input": "I have a follow up question", "interest": "Farming", "chat_history": chat_history}))
 
 

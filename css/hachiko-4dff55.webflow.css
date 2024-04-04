@@ -2708,7 +2708,7 @@
 }
 
 .sidebar {
-  overflow: scroll;
+  overflow: visible;
 }
 
 .chat {
@@ -2719,7 +2719,7 @@
 }
 
 .toolbar {
-  overflow: scroll;
+  overflow: visible;
 }
 
 .sidebar-text {
@@ -3263,7 +3263,7 @@
   }
 
   .uui-blog07_category-menu {
-    overflow: scroll;
+    overflow: visible;
   }
 
   .uui-blog07_component {

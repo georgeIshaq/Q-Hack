@@ -16,13 +16,12 @@ def rephrase():
 def chat():
     if request.method == 'POST':
         data = request.get_json()
-
+        print("data in chat():", data, "\n")
         user_input = data.get('user_input')
         interest = "Farming"
 
         response = agent_utils.agent_run(user_input, interest)
         return jsonify({"response": response})
-
 
 @app.route('/')
 def index():
