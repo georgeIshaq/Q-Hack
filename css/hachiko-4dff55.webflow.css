@@ -1745,15 +1745,13 @@
 }
 
 .uui-container-large-2 {
-  width: 100%;
-  max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
 }
 
 .uui-page-padding-2 {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 7.5vw;
+  padding-right: 7.5vw;
 }
 
 .container {
@@ -2708,6 +2706,7 @@
 }
 
 .sidebar {
+  min-width: 19vw;
   overflow: visible;
 }
 
@@ -3263,7 +3262,7 @@
   }
 
   .uui-blog07_category-menu {
-    overflow: visible;
+    overflow: scroll;
   }
 
   .uui-blog07_component {
