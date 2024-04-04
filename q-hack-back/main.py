@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 import agent_utils
@@ -11,11 +11,18 @@ CORS(app)
 def rephrase():
     pass
 
-@app.route(methods=['POST'])
-def ():
 
-    agent_utils.agent_run()
-    return
+@app.route('/chat', methods=['POST'])
+def chat():
+    if request.method == 'POST':
+        data = request.get_json()
+
+        user_input = data.get('user_input')
+        interest = "Farming"
+
+        response = agent_utils.agent_run(user_input, interest)
+        return jsonify({"response": response})
+
 
 @app.route('/')
 def index():
@@ -24,4 +31,3 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
-

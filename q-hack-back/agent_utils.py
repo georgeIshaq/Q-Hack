@@ -41,8 +41,8 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 chat_history = []
 
 
-def agent_run(user_input):
-    result = agent_executor.invoke({"input": user_input, "interest": "Farming", "chat_history": chat_history})
+def agent_run(user_input, interest):
+    result = agent_executor.invoke({"input": user_input, "interest": interest, "chat_history": chat_history})
     chat_history.extend(
         [
             HumanMessage(content=user_input),
@@ -50,12 +50,13 @@ def agent_run(user_input):
         ]
     )
 
+    return result["output"]
+
 
 if __name__ == "__main__":
     input = "Integrate 2*x^3"
 
 
-    print(result)
     print(agent_executor.invoke({"input": "I have a follow up question", "interest": "Farming", "chat_history": chat_history}))
 
 
