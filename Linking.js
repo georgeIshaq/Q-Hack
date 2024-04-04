@@ -28,9 +28,9 @@ function submitForm() {
     var block = document.getElementsByClassName('chatblock')
     block[0].appendChild(resDiv);
     if (data.image != null) {
-        var image = document.createElement('img');
-        image.src = `http://localhost:5000/image/${data.image}`;
-        block[0].appendChild(image)
+        var image = document.getElementById('w-node-_4d3123e0-4b6c-e5e5-6c96-d8d0ff056414-0ecca68c')
+        image.firstChild.removeAttribute('srcset') 
+        image.firstChild.src = `http://localhost:5000/image/${data.image}`;
     }
 })
   .catch((error) => {
