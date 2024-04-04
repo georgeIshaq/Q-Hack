@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
 import agent_utils
@@ -18,10 +18,19 @@ def chat():
         data = request.get_json()
 
         user_input = data.get('user_input')
+        print(user_input)
         interest = "Farming"
 
-        response = agent_utils.agent_run(user_input, interest)
-        return jsonify({"response": response})
+        response, image_id = agent_utils.agent_run(user_input, interest)
+        if image_id is None:
+            return jsonify({"response": response})
+        else:
+            return jsonify({"response": response, "image": image_id})
+
+
+@app.route('/image/<filename>')
+def image(filename):
+    return send_from_directory('images', filename)
 
 
 @app.route('/')
