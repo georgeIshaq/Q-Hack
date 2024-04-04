@@ -12,6 +12,7 @@ load_dotenv()
 @tool
 def generate_image(prompt):
     """Generates image based on provided prompt"""
+    print(prompt)
 
     client = AzureOpenAI(
         api_version="2024-02-01",
@@ -46,3 +47,5 @@ def generate_image(prompt):
     # Display the image in the default image viewer
     image = Image.open(image_path)
     image.show()
+
+    return "Image was successfully generated"
