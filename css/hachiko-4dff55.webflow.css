@@ -2708,18 +2708,18 @@
 }
 
 .sidebar {
-  overflow: scroll;
+  overflow: visible;
 }
 
 .chat {
   flex-flow: column;
   justify-content: space-around;
   display: flex;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .toolbar {
-  overflow: scroll;
+  overflow: visible;
 }
 
 .sidebar-text {
