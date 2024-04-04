@@ -6,6 +6,11 @@ CORS(app)
 
 
 @app.route('/')
+def rephrase():
+    pass
+
+
+@app.route('/')
 def index():
     return 'Carl is not white @copyright Wisdom'
 
