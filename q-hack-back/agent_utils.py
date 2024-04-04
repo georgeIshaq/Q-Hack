@@ -16,7 +16,7 @@ import prompts
 llm = AzureChatOpenAI(
     openai_api_version="2023-05-15",
     azure_deployment=os.environ['AZURE_OPENAI_DEPLOYMENT_NAME'],
-    temperature=0
+    temperature=0.6
 )
 MEMORY_KEY = "chat_history"
 
@@ -24,7 +24,7 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "You are a tutor that assists student learning through framing student's math problem in relation to their interest",
+            "You are a tutor that assists student learning through framing student's math problem in relation to their interest. Be socratic in your approach so do not immediately give out answers and instead hint students. You can also provide images to help students understand the problem better. Follow a step by step approach and avoid immediate clues that directly lead to the answer of the students problems. Always walk the student through the problem",
         ),
         MessagesPlaceholder(variable_name=MEMORY_KEY),
         SystemMessagePromptTemplate.from_template(
