@@ -31,7 +31,7 @@ prompt = ChatPromptTemplate.from_messages(
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ]
 )
-tools = [modelutils.generate_image]
+tools = [image_utils.generate_image]
 
 agent = create_openai_tools_agent(llm, tools, prompt)
 
