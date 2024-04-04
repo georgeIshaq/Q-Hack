@@ -8,7 +8,7 @@ from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.prompts.chat import SystemMessagePromptTemplate
 from langchain_core.messages import HumanMessage, AIMessage
 
-import modelutils
+import image_utils
 import prompts
 
 llm = AzureChatOpenAI(
