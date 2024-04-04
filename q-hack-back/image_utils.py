@@ -1,3 +1,5 @@
+import uuid
+
 from dotenv import load_dotenv
 from langchain.tools import tool
 from openai import AzureOpenAI
@@ -36,7 +38,8 @@ def generate_image(prompt):
         os.mkdir(image_dir)
 
     # Initialize the image path (note the filetype should be png)
-    image_path = os.path.join(image_dir, 'generated_image.png')
+    file_id = str(uuid.uuid4())
+    image_path = os.path.join(image_dir, f'{file_id}.png')
 
     # Retrieve the generated image
     image_url = json_response["data"][0]["url"]  # extract image URL from response
@@ -44,8 +47,4 @@ def generate_image(prompt):
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
 
-    # Display the image in the default image viewer
-    image = Image.open(image_path)
-    image.show()
-
-    return "Image was successfully generated"
+    return str({"message": "Image was successfully generated", "id": file_id})
