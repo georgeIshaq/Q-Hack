@@ -1,7 +1,9 @@
 # Choose the LLM that will drive the agent
 # Only certain models support this
+import json
 import os
 
+from flask import jsonify
 from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain.chat_models import AzureChatOpenAI
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -36,7 +38,7 @@ tools = [image_utils.generate_image]
 agent = create_openai_tools_agent(llm, tools, prompt)
 
 
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, return_intermediate_steps=True)
 
 chat_history = []
 
@@ -49,12 +51,19 @@ def agent_run(user_input, interest):
             AIMessage(content=result["output"]),
         ]
     )
-    print("user input:", user_input, '\n')
-    return result["output"]
+    intermediate_steps = result["intermediate_steps"]
+    image_id = None
+    if len(intermediate_steps) > 0:
+        json_image = intermediate_steps[0][1].replace("'", "\"")
+
+        image_id = json.loads(json_image)['id'] + '.png'
+    print(image_id)
+    return result['output'], image_id
 
 
 if __name__ == "__main__":
     input = "Integrate 2*x^3"
-    print(agent_executor.invoke({"input": "I have a follow up question", "interest": "Farming", "chat_history": chat_history}))
+
+    response = agent_executor.invoke({"input": input, "interest": "Farming", "chat_history": chat_history})
 
 
