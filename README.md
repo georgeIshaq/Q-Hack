@@ -5,5 +5,3 @@ Mathy Co offers a personalized approach to mathematics, tailored to match your u
 <img width="1464" alt="image" src="https://github.com/georgeIshaq/Q-Hack/assets/106736711/f0fa7edf-e833-4f37-ba0c-fcdfe0a537ee">
 
 
-Inshallah Q-hacks Frankfurt '24 © IshaqKhoAkyuzKramarenkoAdroudji et. al.
-
